@@ -1,0 +1,35 @@
+mybatis:
+  config-location: classpath:mybatis-config.xml
+server:
+  port: 8088
+spring:
+  datasource:
+    data-sources:
+      global:
+        jdbc-url: jdbc:mysql://${global.mysql.host}:3306/udesk_proj_global_${deploy.env}?characterEncoding=utf8&useUnicode=true&useSSL=false&allowMultiQueries=true&autoReconnect=true&useAffectedRows=true&serverTimezone=GMT%2B8
+        username: ${global.mysql.username}
+        password: ${global.mysql.password}
+      primary:
+        primary1:
+          jdbc-url: jdbc:mysql://${primary.mysql.host}:3306/udesk_proj_${deploy.env}_sd1?characterEncoding=utf8&useUnicode=true&useSSL=false&allowMultiQueries=true&autoReconnect=true&useAffectedRows=true&serverTimezone=GMT%2B8
+          username: ${primary.mysql.username}
+          password: ${primary.mysql.password}
+        primary2:
+#          pool-name: primary2HikariCP
+          jdbc-url: jdbc:mysql://${primary.mysql.host}:3306/udesk_proj_${deploy.env}_sd2?characterEncoding=utf8&useUnicode=true&useSSL=false&allowMultiQueries=true&autoReconnect=true&useAffectedRows=true&serverTimezone=GMT%2B8
+          username: ${primary.mysql.username}
+          password: ${primary.mysql.password}
+          driver-class-name: com.mysql.cj.jdbc.Driver
+#          minimum-idle: 2
+#          maximum-pool-size: ${server.tomcat.max-threads}
+#          connection-timeout: 2000
+#          connection-test-query: select 1
+#          max-lifetime: 600000
+#          idle-timeout: 120000
+#          data-source-properties: {cachePrepStmts: true, prepStmtCacheSize: 250, prepStmtCacheSqlLimit: 2048, useServerPrepStmts: true, useLocalSessionState: true, useLocalTransactionState: true, rewriteBatchedStatements: true, cacheResultSetMetadata: true, cacheServerConfiguration: true, elideSetAutoCommits: true, maintainTimeStats: true}
+props:
+  sql:
+    show: true
+
+shard-table:
+  primary:
